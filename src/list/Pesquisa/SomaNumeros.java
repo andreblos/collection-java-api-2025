@@ -1,86 +1,80 @@
 package list.Pesquisa;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 public class SomaNumeros {
-    //atributos
-    private List<Integer> numeros;
 
-    //construtor
+    private ArrayList<Integer> listaNum;
+
     public SomaNumeros() {
-        this.numeros = new ArrayList<>();
+        listaNum = new ArrayList<>();
     }
 
-    public void adicionarNumero(int numero) {
-        this.numeros.add(numero);
+    public void adicionarNumero(int numero){
+        listaNum.add(numero);
     }
 
-    public int calcularSoma() {
+    public int calcularSoma(){
         int soma = 0;
-        for (Integer numero : numeros)
-            soma += numero;
-        return soma;
-    }
-
-    public int encontrarMaiorNumero() {
-        int maiorNumero = Integer.MIN_VALUE;
-        if (!numeros.isEmpty()) {
-            for (Integer numero : numeros) {
-                if (numero >= maiorNumero) {
-                    maiorNumero = numero;
-                }
+        if (!listaNum.isEmpty()){
+            for (Integer numero : listaNum) {
+                soma += numero;
             }
-            return maiorNumero;
+            return soma;
         } else {
-            throw new RuntimeException("A lista está vazia!");
+            throw new RuntimeException("Nenhum numero encontrado");
         }
     }
 
-    public int encontrarMenorNumero() {
-        int menorNumero = Integer.MAX_VALUE;
-        if (!numeros.isEmpty()) {
-            for (Integer numero : numeros) {
-                if (numero <= menorNumero) {
-                    menorNumero = numero;
-                }
+    public int encontrarMaiorNumero(){
+        if (listaNum.isEmpty()) {
+            throw new IllegalStateException("Nenhum número encontrado");
+        }
+        // Evita erro com lista toda negativa
+        return Collections.max(listaNum);
+
+    }
+
+    public int encontrarMenorNumero(){
+        if (listaNum.isEmpty()) {
+            throw new IllegalStateException("Nenhum número encontrado");
+        }
+        // Evita erro com lista toda negativa
+        return Collections.min(listaNum);
+    }
+
+    public void exibirNumeros(){
+        if (!listaNum.isEmpty()){
+            for (Integer numero : listaNum) {
+                System.out.println(numero);
             }
-            return menorNumero;
-        } else {
-            throw new RuntimeException("A lista está vazia!");
         }
     }
 
-    public void exibirNumeros() {
-        if (!numeros.isEmpty()) {
-            System.out.println(this.numeros);
-        } else {
-            System.out.println("A lista está vazia!");
-        }
-    }
 
-    public static void main(String[] args) {
-        // Criando uma instância da classe SomaNumeros
-        SomaNumeros somaNumeros = new SomaNumeros();
+public static void main(String[] args) {
+    // Criando uma instância da classe SomaNumeros
+    SomaNumeros somaNumeros = new SomaNumeros();
 
-        // Adicionando números à lista
-        somaNumeros.adicionarNumero(5);
-        somaNumeros.adicionarNumero(0);
-        somaNumeros.adicionarNumero(0);
-        somaNumeros.adicionarNumero(-2);
-        somaNumeros.adicionarNumero(10);
+    // Adicionando números à lista
+    somaNumeros.adicionarNumero(5);
+    somaNumeros.adicionarNumero(0);
+    somaNumeros.adicionarNumero(0);
+    somaNumeros.adicionarNumero(-2);
+    somaNumeros.adicionarNumero(10);
 
-        // Exibindo a lista de números adicionados
-        System.out.println("Números adicionados:");
-        somaNumeros.exibirNumeros();
+    // Exibindo a lista de números adicionados
+    System.out.println("Números adicionados:");
+    somaNumeros.exibirNumeros();
 
-        // Calculando e exibindo a soma dos números na lista
-        System.out.println("Soma dos números = " + somaNumeros.calcularSoma());
+    // Calculando e exibindo a soma dos números na lista
+    System.out.println("Soma dos números = " + somaNumeros.calcularSoma());
 
-        // Encontrando e exibindo o maior número na lista
-        System.out.println("Maior número = " + somaNumeros.encontrarMaiorNumero());
+    // Encontrando e exibindo o maior número na lista
+    System.out.println("Maior número = " + somaNumeros.encontrarMaiorNumero());
 
-        // Encontrando e exibindo o menor número na lista
-        System.out.println("Menor número = " + somaNumeros.encontrarMenorNumero());
-    }
+    // Encontrando e exibindo o menor número na lista
+    System.out.println("Menor número = " + somaNumeros.encontrarMenorNumero());
+}
 }

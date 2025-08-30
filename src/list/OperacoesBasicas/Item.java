@@ -1,15 +1,15 @@
 package list.OperacoesBasicas;
 
 public class Item {
-    //atributos
+
     private String nome;
     private double preco;
-    private int quant;
+    private int quantidade;
 
-    public Item(String nome, double preco, int quant) {
+    public Item(String nome, double preco, int quantidade) {
         this.nome = nome;
         this.preco = preco;
-        this.quant = quant;
+        this.quantidade = quantidade;
     }
 
     public String getNome() {
@@ -20,8 +20,12 @@ public class Item {
         return preco;
     }
 
-    public int getQuant() {
-        return quant;
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override
@@ -29,7 +33,7 @@ public class Item {
         return "Item{" +
                 "nome='" + nome + '\'' +
                 ", preco=" + preco +
-                ", quant=" + quant +
+                ", quant=" + quantidade +
                 '}';
     }
 }
